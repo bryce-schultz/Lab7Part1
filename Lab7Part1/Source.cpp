@@ -15,16 +15,18 @@ const int MAX_STUDENTS = 20;
 
 //function prototypes
 void inputData(int id[], float testScores[][3], int &studentCounter);
-void processData(float testScores[][3], float indsAvergae[], char letterGrade[], int studentCounter, float &overallClassAverage);
+void processData(float testScores[][3], float indsAvergae[], char letterGrade[], int studentCounter, float &overallClassAverage, int numberOfGrades[]);
 void calculateIndAverageAndGrade(float testScores[][3],  float indsAverage[], char letterGrade[], int studentCounter);
 void calculateOverallAverage(float indsAverage[], int studentCounter, float &overallClassAverage);
 void printReport(int id[], float testScores[][3], float indsAverage[], char letterGrade[], float classAverage, int numberOfStudents);
 void printTitleAndHeading();
 void printIndInfo(int id[], float testScores[][3], float indsAverage[], char letterGrade[], int numberOfStudents);
 void printTotalAndClassAverage(int numberOfStudents, float classAverage);
+void calculateNumberOfGrades(char letterGrade[], int numberOfStudents, int numberOfGrades[]);
 
 int main() {
 	int id[MAX_STUDENTS];
+	int numberOfGrades[5] = { 0 };
 	float testScores[MAX_STUDENTS][3];
 	float indsAverage[MAX_STUDENTS];
 	char letterGrade[MAX_STUDENTS];
@@ -32,7 +34,7 @@ int main() {
 	int studentCounter = 0;
 
 	inputData(id, testScores, studentCounter);
-	processData(testScores, indsAverage, letterGrade, studentCounter, classAverage);
+	processData(testScores, indsAverage, letterGrade, studentCounter, classAverage, numberOfGrades);
 	printReport(id, testScores, indsAverage, letterGrade, classAverage, studentCounter);
 
 	cin.ignore(2);
@@ -59,9 +61,10 @@ void inputData(int id[], float testScores[][3], int &studentCounter) {
 	}
 }
 
-void processData(float testScores[][3], float indsAvergae[], char letterGrade[], int studentCounter, float &overallClassAverage) {
+void processData(float testScores[][3], float indsAvergae[], char letterGrade[], int studentCounter, float &overallClassAverage, int numberOfGrades[]) {
 	calculateIndAverageAndGrade(testScores, indsAvergae, letterGrade, studentCounter);
 	calculateOverallAverage(indsAvergae, studentCounter, overallClassAverage);
+	calculateNumberOfGrades(letterGrade, studentCounter, numberOfGrades);
 }
 
 void calculateIndAverageAndGrade(float testScores[][3], float indsAverage[], char letterGrade[], int studentCounter) {
@@ -105,4 +108,43 @@ void printIndInfo(int id[], float testScores[][3], float indsAverage[], char let
 
 void printTotalAndClassAverage(int numberOfStudents, float classAverage) {
 	cout << "\n\n** Number of Students: " << numberOfStudents << " Overall Class Average: " << classAverage << " **\n";
+}
+
+void calculateNumberOfGrades(char letterGrade[], int numberOfStudents, int numberOfGrades[]) {
+	for (int i = 0; i < numberOfStudents; i++) {
+		if (letterGrade[i] == 'A') {
+			numberOfGrades[0]++;
+		}
+		else if (letterGrade[i] == 'B') {
+			numberOfGrades[1]++;
+		}
+		else if (letterGrade[i] == 'C') {
+			numberOfGrades[2]++;
+		}
+		else if (letterGrade[i] == 'D') {
+			numberOfGrades[3]++;
+		}
+		else {
+			numberOfGrades[4]++;
+		}
+	}
+}
+
+void printGradeGraph(int numberOfGrades[]) {
+	int choice = 0;
+	cout << "Choose a form for the graph: \n1) Vertical \n2) Horizaontal\n";
+	cin >> choice;
+
+	switch (choice) {
+		case 1: {
+
+		}
+		case 2: {
+
+		}
+		default: {
+			cout << "\nInvalid Choice!\n";
+			printGradeGraph(numberOfGrades);
+		}
+	}
 }
