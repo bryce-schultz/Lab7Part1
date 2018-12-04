@@ -205,7 +205,7 @@ void printGradeGraph(int numberOfGrades[]) {
 			cout << "\n";
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < numberOfGrades[i]; j++) {
-					stars += "*";
+					stars += "* ";
 				}
 				cout << letter[i] << "'s: " << stars << "\n";
 				stars = "";
