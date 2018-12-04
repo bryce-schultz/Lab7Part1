@@ -9,7 +9,6 @@ Description: the program allows you to enter grades for students then view the d
 #include <iomanip>
 #include <cmath>
 #include <cctype>
-#include <stdio.h>
 #include <string>
 
 using namespace std;
